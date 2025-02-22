@@ -12,7 +12,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+[net]
+git-fetch-with-cli = true
+[source.crates-io]
+replace-with = 'mirror'
 
+[source.mirror]
+registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
 [package]
 name = "triton-distributed"
 description = "Distributed GenAI Inference Framework"
