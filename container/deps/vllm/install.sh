@@ -75,6 +75,7 @@ done
 if [[ ! "$PATCH_PATH" = /* ]]; then
     PATCH_PATH="$(pwd)/${PATCH_PATH}"
 fi
+# zhangwei:配置代理
 
 # Clone vLLM repository
 echo "Cloning vLLM repository at ref: $VLLM_REF"
@@ -87,6 +88,7 @@ if [ -n "$PATCH_PATH" ]; then
     echo "Applying patch from: $PATCH_PATH"
     git apply "$PATCH_PATH"
 fi
+# zhangwei:取消代理
 
 # Install using specified command
 echo "Installing using: $INSTALL_CMD"

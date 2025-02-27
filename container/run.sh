@@ -27,7 +27,7 @@ DEFAULT_FRAMEWORK=STANDARD
 
 SOURCE_DIR=$(dirname "$(readlink -f "$0")")
 
-IMAGE=
+IMAGE=harbor.test.hihonor.com/modelanalyzer/triton-distributed:v0.2.2-openai
 HF_CACHE=
 DEFAULT_HF_CACHE=${SOURCE_DIR}/.cache/huggingface
 GPUS="all"
@@ -289,6 +289,6 @@ if [ -z "$RUN_PREFIX" ]; then
     set -x
 fi
 
-${RUN_PREFIX} docker run ${GPU_STRING} ${INTERACTIVE} ${RM_STRING} --network host --shm-size=10G --ulimit memlock=-1 --ulimit stack=67108864 ${ENVIRONMENT_VARIABLES} ${VOLUME_MOUNTS} -w /workspace --cap-add CAP_SYS_PTRACE --ipc host ${PRIVILEGED_STRING} ${NAME_STRING} ${ENTRYPOINT_STRING} ${IMAGE} "${REMAINING_ARGS[@]}"
+${RUN_PREFIX} docker run ${GPU_STRING} ${INTERACTIVE} ${RM_STRING} -v /opt/nfshub245:/opt/nfshub245   --network host --shm-size=10G --ulimit memlock=-1 --ulimit stack=67108864 ${ENVIRONMENT_VARIABLES} ${VOLUME_MOUNTS} -w /workspace --cap-add CAP_SYS_PTRACE --ipc host ${PRIVILEGED_STRING} ${NAME_STRING} ${ENTRYPOINT_STRING} ${IMAGE} "${REMAINING_ARGS[@]}"
 
 { set +x; } 2>/dev/null
